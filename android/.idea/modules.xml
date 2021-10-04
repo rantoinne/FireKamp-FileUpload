@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Firekamp.iml" filepath="$PROJECT_DIR$/.idea/modules/Firekamp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Firekamp.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Firekamp.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/874273962/Firekamp.react-native-document-picker.iml" filepath="$PROJECT_DIR$/.idea/modules/874273962/Firekamp.react-native-document-picker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-265251751/Firekamp.react-native-safe-area-context.iml" filepath="$PROJECT_DIR$/.idea/modules/-265251751/Firekamp.react-native-safe-area-context.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1794121807/Firekamp.react-native-screens.iml" filepath="$PROJECT_DIR$/.idea/modules/-1794121807/Firekamp.react-native-screens.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/865002982/Firekamp.react-native-vector-icons.iml" filepath="$PROJECT_DIR$/.idea/modules/865002982/Firekamp.react-native-vector-icons.iml" />
+    </modules>
+  </component>
+</project>

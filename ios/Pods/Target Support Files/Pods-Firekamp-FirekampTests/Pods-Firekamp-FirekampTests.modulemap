@@ -1,0 +1,6 @@
+module Pods_Firekamp_FirekampTests {
+  umbrella header "Pods-Firekamp-FirekampTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

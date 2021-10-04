@@ -1,0 +1,14 @@
+com/firekamp/ReactNativeFlipper.java
+ com.firekamp.ReactNativeFlipper
+ com.firekamp.ReactNativeFlipper$1
+ com.firekamp.ReactNativeFlipper$2
+ com.firekamp.ReactNativeFlipper$2$1
+com/firekamp/MainApplication.java
+ com.firekamp.MainApplication
+ com.firekamp.MainApplication$1
+com/firekamp/BuildConfig.java
+ com.firekamp.BuildConfig
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList
+com/firekamp/MainActivity.java
+ com.firekamp.MainActivity

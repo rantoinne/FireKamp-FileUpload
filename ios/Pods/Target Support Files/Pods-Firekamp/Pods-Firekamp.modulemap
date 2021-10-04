@@ -1,0 +1,6 @@
+module Pods_Firekamp {
+  umbrella header "Pods-Firekamp-umbrella.h"
+
+  export *
+  module * { export * }
+}
