@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import styles from './FileDetailsCard.styles';
 import { COLOR_CODE, FILE_UPLOAD_STATUS } from '../../utils/enums';
 
 
@@ -37,23 +38,15 @@ const FileDetailsCard: FC<FileDetailsCardProps> = ({
             size={20}
             color={COLOR_CODE.ACCENT}
           />
-          <Text style={{ fontSize: 8, color: COLOR_CODE.SILVER_CHALICE, marginTop: 4 }}>
+          <Text style={styles.progressText}>
             Encrypting...
           </Text>
         </>
       );
       case FILE_UPLOAD_STATUS.NEXT_UP: return (
         <>
-          <View
-            style={{
-              width: 20,
-              height: 20,
-              borderRadius: 10,
-              borderWidth: 1,
-              borderColor: COLOR_CODE.DUSTY_GRAY
-            }}
-          />
-          <Text style={{ fontSize: 8, color: COLOR_CODE.SILVER_CHALICE, marginTop: 4 }}>
+          <View style={styles.waitingCircle} />
+          <Text style={styles.progressText}>
             Waiting...
           </Text>
         </>
@@ -61,27 +54,25 @@ const FileDetailsCard: FC<FileDetailsCardProps> = ({
       case FILE_UPLOAD_STATUS.COMPLETED: return (
         <>
           <AntDesign
-            name="checkcircle"
             size={20}
+            name="checkcircle"
             color={COLOR_CODE.JADE}
           />
-          <Text style={{ fontSize: 8, color: COLOR_CODE.SILVER_CHALICE, marginTop: 4 }}>
+          <Text style={styles.progressText}>
             Done
           </Text>
         </>
       );
       case FILE_UPLOAD_STATUS.INCOMPLETE: return (
         <>
-          <TouchableOpacity
-            onPress={onPressRetry}
-          >
+          <TouchableOpacity onPress={onPressRetry}>
             <Ionicons
               name="reload"
               size={20}
               color={COLOR_CODE.MANDY}
             />
           </TouchableOpacity>
-          <Text style={{ fontSize: 8, color: COLOR_CODE.SILVER_CHALICE, marginTop: 4 }}>
+          <Text style={styles.progressText}>
             Failed
           </Text>
         </>
@@ -91,56 +82,23 @@ const FileDetailsCard: FC<FileDetailsCardProps> = ({
   }
 
   return (
-    <View
-      style={{
-        width: '100%',
-        backgroundColor: COLOR_CODE.WHITE_LILAC,
-        borderRadius: 8,
-        paddingHorizontal: 15,
-        paddingVertical: 22,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: 20,
-      }}
-    >
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'flex-start',
-          alignItems: 'center',
-        }}
-      >
+    <View style={styles.cardContainer}>
+      <View style={styles.rowContainer}>
         <Image
           source={imageSource}
-          style={{
-            width: 24,
-            height: 28,
-            resizeMode: 'cover',
-          }}
+          style={styles.iconStyle}
         />
-        <View
-          style={{
-            marginLeft: 15,
-            alignItems: 'flex-start',
-          }}
-        >
-          <Text style={{ fontSize: 12, fontWeight: '500', color: COLOR_CODE.MINE_SHAFT }}>
+        <View style={styles.textWrapper}>
+          <Text style={styles.fileNameText}>
             {fileName}
           </Text>
-          <Text style={{ fontSize: 8, marginTop: 9, color: COLOR_CODE.SILVER_CHALICE }}>
-            {parseFloat((fileSize / (1024)).toFixed(2))} MB
+          <Text style={styles.fileSizeText}>
+            {parseFloat((fileSize / (1024 * 1024)).toFixed(2))} MB
           </Text>
         </View>
       </View>
 
-      <View
-        style={{
-          marginRight: 16,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
+      <View style={styles.progressIndicatorWrapper}>
         {getIndicatorViaStatus()}
       </View>
     </View>

@@ -12,6 +12,7 @@ import Accordion from '../Accordion';
 import FileDetailsCard from '../FileDetailsCard';
 import { useDispatch } from 'react-redux';
 import { handleCancelAllQueued } from '../../store/actions/file.actions';
+import { getIconForType } from '../../utils/iconHelper';
 
 interface NextUpProps {
   data: any[];
@@ -79,7 +80,7 @@ const NextUp: FC<NextUpProps> = ({
         data?.map((d: any) => (
           <FileDetailsCard
             key={d.index}
-            imageSource={ImageLinks.pdf}
+            imageSource={getIconForType(d.type)}
             fileName={d.fileName}
             fileSize={d.fileSize}
             status={FILE_UPLOAD_STATUS.NEXT_UP}

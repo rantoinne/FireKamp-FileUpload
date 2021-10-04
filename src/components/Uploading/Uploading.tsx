@@ -3,15 +3,14 @@ import {
   View,
   TouchableOpacity,
   Text,
-  Image,
 } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo'
-import ImageLinks from '../../utils/ImageLinks';
 import { COLOR_CODE, FILE_UPLOAD_STATUS } from '../../utils/enums';
 import Accordion from '../Accordion';
 import FileDetailsCard from '../../components/FileDetailsCard';
 import { useDispatch } from 'react-redux';
 import { handleCancelUpload } from '../../store/actions/file.actions';
+import { getIconForType } from '../../utils/iconHelper';
 
 interface UploadingProps {
   data: any[];
@@ -81,7 +80,7 @@ const Uploading: FC<UploadingProps> = ({
             key={d.index}
             fileSize={d.fileSize}
             fileName={d.fileName}
-            imageSource={ImageLinks.pdf}
+            imageSource={getIconForType(d.type)}
             status={FILE_UPLOAD_STATUS.UPLOADING}
           />
         ))

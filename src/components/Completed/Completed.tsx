@@ -10,6 +10,7 @@ import ImageLinks from '../../utils/ImageLinks';
 import { COLOR_CODE, FILE_UPLOAD_STATUS } from '../../utils/enums';
 import Accordion from '../Accordion';
 import FileDetailsCard from '../FileDetailsCard';
+import { getIconForType } from '../../utils/iconHelper';
 
 interface CompletedProps {
   data: any;
@@ -72,7 +73,7 @@ const Completed: FC<CompletedProps> = ({
         data?.map((d: any) => (
           <FileDetailsCard
             key={d.index}
-            imageSource={ImageLinks.xls}
+            imageSource={getIconForType(d.type)}
             fileName={d.fileName}
             fileSize={d.fileSize}
             status={FILE_UPLOAD_STATUS.COMPLETED}

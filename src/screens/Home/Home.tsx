@@ -35,11 +35,11 @@ const Home: FC<HomeProps> = ({ navigation }: HomeProps) => {
   const hasAtleastOneUploadingFile = useMemo(() => files?.filter(f => f.status === FILE_UPLOAD_STATUS.UPLOADING).length > 0, [files]);
 
   const uploadFile = async () => {
+    console.log(!!nextUpFiles);
     dispatch(handleUploadComplete());
     if (!!nextUpFiles) {
       dispatch(handleNextUpStatusChange());
-      await delay();
-      uploadFileTimer();
+      await uploadFileTimer();
     }
     // return;
   };
@@ -54,7 +54,7 @@ const Home: FC<HomeProps> = ({ navigation }: HomeProps) => {
       const res = await DocumentPicker.pick({
         type: [DocumentPicker.types.allFiles],
       })
-      // const lastFile = files?.[files?.length - 1];
+      console.log({ res });
       dispatch(handleAddFile({
         index: files?.[0].index === -1 ? 0 : files.length,
         fileName: res?.[0]?.name ?? "Filename unknown",
