@@ -41,12 +41,12 @@ const Home: FC<HomeProps> = ({ navigation }: HomeProps) => {
       dispatch(handleNextUpStatusChange());
       await uploadFileTimer();
     }
-    // return;
+    return;
   };
 
   const uploadFileTimer = async () => {
     await delay();
-    uploadFile();
+    await uploadFile();
   };
 
   const pickDocumentFromStorage = async () => {
