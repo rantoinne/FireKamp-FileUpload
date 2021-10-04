@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
 import { useDispatch, useSelector } from 'react-redux';
-import { FilePayload, handleAddFile, handleNextUpStatusChange, handleUploadComplete } from '../../store/actions/file.actions';
+import { handleAddFile, handleNextUpStatusChange, handleUploadComplete } from '../../store/actions/file.actions';
 import { selectFiles } from '../../store/selectors/file.selectors';
 import Header from '../../components/Header';
 import { FILE_UPLOAD_STATUS } from '../../utils/enums';
@@ -24,7 +24,6 @@ interface HomeProps {
 }
 
 const Home: FC<HomeProps> = ({ navigation }: HomeProps) => {
-  let timer: any;
   const dispatch = useDispatch();
   const files: any[] = useSelector(selectFiles);
 
@@ -36,13 +35,13 @@ const Home: FC<HomeProps> = ({ navigation }: HomeProps) => {
   const hasAtleastOneUploadingFile = useMemo(() => files?.filter(f => f.status === FILE_UPLOAD_STATUS.UPLOADING).length > 0, [files]);
 
   const uploadFile = async () => {
-    console.log("called parent");
     dispatch(handleUploadComplete());
-    await delay(500);
-    if (nextUpFiles.length > 0) {
-      console.log("called");
+    if (!!nextUpFiles) {
       dispatch(handleNextUpStatusChange());
+      await delay();
+      uploadFileTimer();
     }
+    // return;
   };
 
   const uploadFileTimer = async () => {
@@ -82,21 +81,16 @@ const Home: FC<HomeProps> = ({ navigation }: HomeProps) => {
       <ScrollView
         contentContainerStyle={{ paddingHorizontal: 15, paddingTop: 32 }}
       >
-        <Uploading
-          data={uploadingFiles}
-        />
+        <Uploading data={uploadingFiles} />
         <View style={styles.separator} />
-        <NextUp
-          data={nextUpFiles}
-        />
+
+        <NextUp data={nextUpFiles} />
         <View style={styles.separator} />
-        <Completed
-          data={completedFiles}
-        />
+
+        <Completed data={completedFiles} />
         <View style={styles.separator} />
-        <Incomplete
-          data={incompleteFiles}
-        />
+
+        <Incomplete data={incompleteFiles} />
       </ScrollView>
     </SafeAreaView>
   );

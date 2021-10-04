@@ -30,7 +30,7 @@ const FileReducer = produce((draft, action): any => {
     case CANCEL_UPLOAD:
       draft?.forEach((d: FilePayload, index: number) => {
         if (d.status === FILE_UPLOAD_STATUS.UPLOADING) {
-          globalState[index].status = FILE_UPLOAD_STATUS.INCOMPLETE;
+          globalState[d.index].status = FILE_UPLOAD_STATUS.INCOMPLETE;
         }
       });
       draft = globalState;
@@ -38,7 +38,7 @@ const FileReducer = produce((draft, action): any => {
     case CANCEL_QUEUED_BULK:
       draft?.forEach((d: FilePayload, index: number) => {
         if (d.status === FILE_UPLOAD_STATUS.NEXT_UP) {
-          globalState[index].status = FILE_UPLOAD_STATUS.INCOMPLETE;
+          globalState[d.index].status = FILE_UPLOAD_STATUS.INCOMPLETE;
         }
       });
       draft = globalState;
@@ -46,17 +46,17 @@ const FileReducer = produce((draft, action): any => {
     case UPLOAD_COMPLETE:
       draft?.forEach((d: FilePayload, index: number) => {
         if (d.status === FILE_UPLOAD_STATUS.UPLOADING) {
-          globalState[index].status = FILE_UPLOAD_STATUS.COMPLETED;
+          globalState[d.index].status = FILE_UPLOAD_STATUS.COMPLETED;
         }
       });
       draft = globalState;
       break;
     case PICK_NEXT_UP:
-      const nextUpFile = draft?.find((d: FilePayload) => d.status === FILE_UPLOAD_STATUS.NEXT_UP);
+      const nextUpFile = globalState?.find((d: FilePayload) => d.status === FILE_UPLOAD_STATUS.NEXT_UP);
       console.log({ nextUpFile });
-      draft?.forEach((d: FilePayload, index: number) => {
+      draft?.forEach((d: FilePayload) => {
         if (d.index === nextUpFile?.index) {
-          globalState[index].status = FILE_UPLOAD_STATUS.UPLOADING;
+          globalState[d.index].status = FILE_UPLOAD_STATUS.UPLOADING;
         }
       });
       draft = globalState;
